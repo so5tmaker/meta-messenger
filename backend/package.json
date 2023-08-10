@@ -1,0 +1,28 @@
+{
+  "name": "logistics-backend",
+  "version": "1.0.0",
+  "description": "backend for logistics",
+  "main": "index.js",
+  "scripts": {
+    "migrate": "prisma migrate dev",
+    "seed:hard": "prisma migrate reset",
+    "seed:soft": "prisma db seed",
+    "migrate:prod": "prisma migrate deploy",
+    "lint:js": "eslint \"src/**/*.ts\" --max-warnings=0",
+    "lint": "npm run lint:js",
+    "start:dev": "nodemon --exec ts-node --files -r tsconfig-paths/register ./src/server.ts",
+    "postinstall": "prisma generate",
+    "prestart": "npm run migrate:prod && npm run seed:soft",
+    "start": "node ./build/server.js",
+    "build:ts": "tsc && tsc-alias -p tsconfig.json",
+    "build": "npm run build:ts"
+  },
+  "keywords": [],
+  "author": "Viktor Sivulskiy",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {},
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  }
+}

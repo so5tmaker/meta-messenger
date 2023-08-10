@@ -1,0 +1,70 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  accountId   BigInt        @id(map: "pkAccount") @default(autoincrement())
+  login       String        @unique(map: "akAccountLogin") @db.VarChar(64)
+  password    String        @db.VarChar
+  AccountRole AccountRole[]
+  Area        Area[]
+  AreaAccount AreaAccount[]
+  Message     Message[]
+  Session     Session[]
+}
+
+model AccountRole {
+  accountId BigInt
+  roleId    BigInt
+  Account   Account @relation(fields: [accountId], references: [accountId], onDelete: Cascade, onUpdate: NoAction, map: "fkAccountRoleAccount")
+  Role      Role    @relation(fields: [roleId], references: [roleId], onDelete: Cascade, onUpdate: NoAction, map: "fkAccountRoleRole")
+
+  @@id([accountId, roleId], map: "pkAccountRole")
+}
+
+model Area {
+  areaId      BigInt        @id(map: "pkArea") @default(autoincrement())
+  name        String        @unique(map: "akAreaName") @db.VarChar
+  ownerId     BigInt
+  Account     Account       @relation(fields: [ownerId], references: [accountId], onDelete: NoAction, onUpdate: NoAction, map: "fkAreaOwner")
+  AreaAccount AreaAccount[]
+  Message     Message[]
+}
+
+model AreaAccount {
+  areaId    BigInt
+  accountId BigInt
+  Account   Account @relation(fields: [accountId], references: [accountId], onDelete: Cascade, onUpdate: NoAction, map: "fkAreaAccountAccount")
+  Area      Area    @relation(fields: [areaId], references: [areaId], onDelete: Cascade, onUpdate: NoAction, map: "fkAreaAccountArea")
+
+  @@id([areaId, accountId], map: "pkAreaAccount")
+}
+
+model Message {
+  messageId BigInt  @id(map: "pkMessage") @default(autoincrement())
+  areaId    BigInt
+  fromId    BigInt
+  text      String  @db.VarChar
+  Area      Area    @relation(fields: [areaId], references: [areaId], onDelete: NoAction, onUpdate: NoAction, map: "fkMessageArea")
+  Account   Account @relation(fields: [fromId], references: [accountId], onDelete: NoAction, onUpdate: NoAction, map: "fkMessageFrom")
+}
+
+model Role {
+  roleId      BigInt        @id(map: "pkRole") @default(autoincrement())
+  name        String        @unique(map: "akRoleName") @db.VarChar
+  AccountRole AccountRole[]
+}
+
+model Session {
+  sessionId BigInt  @id(map: "pkSession") @default(autoincrement())
+  accountId BigInt
+  token     String  @unique(map: "akSessionToken") @db.VarChar
+  ip        String  @db.Inet
+  data      Json
+  Account   Account @relation(fields: [accountId], references: [accountId], onDelete: NoAction, onUpdate: NoAction, map: "fkSessionAccount")
+}
