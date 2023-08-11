@@ -1,7 +1,7 @@
 {
-  "name": "logistics-backend",
+  "name": "meta-messenger-backend",
   "version": "1.0.0",
-  "description": "backend for logistics",
+  "description": "backend for meta-messenger",
   "main": "index.js",
   "scripts": {
     "migrate": "prisma migrate dev",
@@ -20,9 +20,14 @@
   "keywords": [],
   "author": "Viktor Sivulskiy",
   "license": "ISC",
-  "dependencies": {},
-  "devDependencies": {},
+  "dependencies": {
+    "@prisma/client": "^5.1.1"
+  },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
+  },
+  "devDependencies": {
+    "prisma": "^5.1.1",
+    "typescript": "^5.1.6"
   }
 }
