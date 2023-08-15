@@ -21,7 +21,8 @@
   "author": "Viktor Sivulskiy",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "^5.1.1"
+    "@prisma/client": "^5.1.1",
+    "dotenv": "^16.3.1"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"

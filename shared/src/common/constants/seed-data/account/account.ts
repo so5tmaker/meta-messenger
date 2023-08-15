@@ -1,4 +1,4 @@
-// import { AccountBaseDto } from '~/common/types';
+import { AccountBaseDto } from '~/common/types';
 
 export const account: AccountBaseDto[] = [
   {
