@@ -1,5 +1,5 @@
 ({
-  async signin({ login, password }) {
+  async signin({ login, password }: { login: string; password: string }) {
     console.log({ method: 'auth.signin', login, password });
     return { status: 'ok', token: '--no-token-provided--' };
   },
@@ -9,7 +9,7 @@
     return { status: 'ok' };
   },
 
-  async restore({ token }) {
+  async restore({ token }: { token: string }) {
     console.log({ method: 'auth.restore', token });
     return { status: 'ok' };
   },

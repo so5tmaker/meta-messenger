@@ -1,6 +1,6 @@
 import { AccountBaseDto } from '~/common/types';
 
-export const account: AccountBaseDto[] = [
+export const accounts: AccountBaseDto[] = [
   {
     accountId: 1,
     login: 'admin',

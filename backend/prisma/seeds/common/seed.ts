@@ -16,7 +16,7 @@ export async function seedCommonSampleData(
 async function seedAccount(): Promise<void> {
   await prismaClient.account.createMany({
     data: await Promise.all(
-      accounts.map(async (account) => ({
+      accounts.map(async (account: any) => ({
         ...account,
       })),
     ),
