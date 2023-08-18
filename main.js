@@ -16,7 +16,7 @@ const sandbox = {
   console: Object.freeze(logger),
   common: Object.freeze(common),
 };
-const apiPath = path.join(process.cwd(), './api');
+const apiPath = path.join(process.cwd(), './backend/build/core');
 const routing = {};
 
 (async () => {
