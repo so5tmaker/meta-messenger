@@ -1,34 +1,12 @@
 {
-  "name": "meta-messenger-backend",
+  "name": "logistics-backend",
   "version": "1.0.0",
   "description": "backend for meta-messenger",
   "main": "index.js",
   "scripts": {
-    "migrate": "prisma migrate dev",
-    "seed:hard": "prisma migrate reset",
-    "seed:soft": "prisma db seed",
-    "migrate:prod": "prisma migrate deploy",
-    "lint:js": "eslint \"src/**/*.ts\" --max-warnings=0",
-    "lint": "npm run lint:js",
-    "start:dev": "nodemon --exec ts-node --files -r tsconfig-paths/register ./src/server.ts",
-    "postinstall": "prisma generate",
-    "prestart": "npm run migrate:prod && npm run seed:soft",
-    "start": "node ./build/server.js",
-    "build:ts": "tsc && tsc-alias -p tsconfig.json",
-    "build": "npm run build:ts"
+    "generate": "prisma generate",
+    "postinstall": "npm run generate"
   },
-  "keywords": [],
-  "author": "Viktor Sivulskiy",
-  "license": "ISC",
-  "dependencies": {
-    "@prisma/client": "^5.1.1",
-    "dotenv": "^16.3.1"
-  },
-  "prisma": {
-    "seed": "ts-node prisma/seed.ts"
-  },
-  "devDependencies": {
-    "prisma": "^5.1.1",
-    "typescript": "^5.1.6"
-  }
+  "dependencies": {},
+  "devDependencies": {}
 }
