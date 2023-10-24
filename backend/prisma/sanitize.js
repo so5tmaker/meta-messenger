@@ -36,7 +36,7 @@ const sanitizeSchema = (raw) => {
 };
 
 (async () => {
-    const pathToEntities = path.join(process.cwd(), 'prisma', 'json-schema.json');
+    const pathToEntities = path.join(process.cwd(), 'json-schema.json');
     const src = await fsp.readFile(pathToEntities, 'utf-8');
     const { definitions } = JSON.parse(src);
     const entities = sanitizeSchema(definitions);

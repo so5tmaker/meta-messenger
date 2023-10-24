@@ -1,0 +1,33 @@
+{
+  "account": {
+    "type": "object",
+    "properties": {},
+    "required": ["login", "password"]
+  },
+  "accountRole": {
+    "type": "object",
+    "properties": {},
+    "required": ["accountId", "roleId"]
+  },
+  "area": {
+    "type": "object",
+    "properties": {},
+    "required": ["name", "ownerId"]
+  },
+  "areaAccount": {
+    "type": "object",
+    "properties": {},
+    "required": ["areaId", "accountId"]
+  },
+  "message": {
+    "type": "object",
+    "properties": {},
+    "required": ["areaId", "fromId", "text"]
+  },
+  "role": { "type": "object", "properties": {}, "required": ["name"] },
+  "session": {
+    "type": "object",
+    "properties": {},
+    "required": ["accountId", "token", "ip", "data"]
+  }
+}
